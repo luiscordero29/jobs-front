@@ -1,0 +1,32 @@
+<div class="modal" [ngClass]="{'is-active':LoginS.isOpen}">
+  <div class="modal-background"></div>
+  <div class="modal-card">
+    <header class="modal-card-head">
+      <p class="modal-card-title">Ingresar</p>
+      <button class="delete" aria-label="close" (click)="modalClose()"></button>
+    </header>
+    <section class="modal-card-body">
+      <div class="field">
+        <label class="label">E-mail</label>
+        <div class="control has-icons-left has-icons-right">
+          <input class="input" type="email">
+          <span class="icon is-small is-left">
+            <i class="fas fa-envelope"></i>
+          </span>
+        </div>
+      </div>
+      <div class="field">
+        <label class="label">Contraseña</label>
+        <div class="control has-icons-left has-icons-right">
+          <input class="input" type="password">
+          <span class="icon is-small is-left">
+            <i class="fas fa-lock"></i>
+          </span>
+        </div>
+      </div>
+    </section>
+    <footer class="modal-card-foot">
+      <button class="button is-success">Ingresar</button>
+    </footer>
+  </div>
+</div>

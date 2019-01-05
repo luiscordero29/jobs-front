@@ -1,6 +1,55 @@
-<p>
-  signin works!
-</p>
-<p>
-  Lorem ipsum dolor sit amet consectetur, adipisicing elit. Excepturi est architecto recusandae debitis exercitationem harum totam magnam minus a cum. Fugiat assumenda distinctio cupiditate nam eveniet, velit voluptatibus natus animi!
-</p>
+<div class="modal" [ngClass]="{'is-active':SigninS.isOpen}">
+  <div class="modal-background"></div>
+  <div class="modal-card">
+    <header class="modal-card-head">
+      <p class="modal-card-title">Registrarse</p>
+      <button class="delete" aria-label="close" (click)="modalClose()"></button>
+    </header>
+    <section class="modal-card-body">
+      <div class="field">
+        <label class="label">Apellidos y Nombres</label>
+        <div class="control has-icons-left has-icons-right">
+          <input class="input" type="text">
+          <span class="icon is-small is-left">
+            <i class="fas fa-user"></i>
+          </span>
+        </div>
+      </div>
+      <div class="field">
+        <label class="label">Teléfono</label>
+        <div class="control has-icons-left has-icons-right">
+          <input class="input" type="number">
+          <span class="icon is-small is-left">
+            <i class="fas fa-phone"></i>
+          </span>
+        </div>
+      </div>
+      <div class="field">
+        <label class="label">E-mail</label>
+        <div class="control has-icons-left has-icons-right">
+          <input class="input" type="email">
+          <span class="icon is-small is-left">
+            <i class="fas fa-envelope"></i>
+          </span>
+        </div>
+      </div>
+      <div class="field">
+        <label class="label">Contraseña</label>
+        <div class="control has-icons-left has-icons-right">
+          <input class="input" type="password">
+          <span class="icon is-small is-left">
+            <i class="fas fa-lock"></i>
+          </span>
+        </div>
+      </div>
+      <label class="checkbox">
+        <input type="checkbox">
+        He leído y acepto los <a href="#">Términos y Condiciones de Servicio</a> y la <a href="#">Política de privacidad</a>. *
+      </label>
+    </section>
+    <footer class="modal-card-foot">
+      <button class="button is-success">Registrarse</button>
+    </footer>
+  </div>
+</div>
+ 
