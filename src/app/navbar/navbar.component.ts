@@ -7,7 +7,7 @@ import { LoginService } from '../services/login.service';
   styleUrls: ['./navbar.component.sass']
 })
 export class NavbarComponent implements OnInit {
-
+  burger: Boolean = false;
   constructor(
     public SigninS: SigninService,
     public LoginS: LoginService,
@@ -22,6 +22,10 @@ export class NavbarComponent implements OnInit {
 
   modalLogin() {
     this.LoginS.toggle();
+  }
+
+  toggleButger() {
+    this.burger = !this.burger;
   }
 
 }

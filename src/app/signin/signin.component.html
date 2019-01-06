@@ -1,3 +1,4 @@
+<form #formSignin="ngForm" (ngSubmit)="onSubmit(formSignin)" >
 <div class="modal" [ngClass]="{'is-active':SigninS.isOpen}">
   <div class="modal-background"></div>
   <div class="modal-card">
@@ -9,47 +10,76 @@
       <div class="field">
         <label class="label">Apellidos y Nombres</label>
         <div class="control has-icons-left has-icons-right">
-          <input class="input" type="text">
+          <input [(ngModel)]="user.fullname" name="fullname" class="input" type="text" required [ngClass]="{'is-success':fields.fullname.success,'is-danger':fields.fullname.danger}">
           <span class="icon is-small is-left">
             <i class="fas fa-user"></i>
           </span>
+          <span *ngIf="fields.fullname.success" class="icon is-small is-right">
+            <i class="fas fa-check"></i>
+          </span>
+          <span *ngIf="fields.fullname.danger" class="icon is-small is-right">
+            <i class="fas fa-exclamation-triangle"></i>
+          </span>
+          <p *ngIf="fields.fullname.help" class="help is-danger">{{ fields.fullname.help }}</p>
         </div>
       </div>
       <div class="field">
         <label class="label">Teléfono</label>
         <div class="control has-icons-left has-icons-right">
-          <input class="input" type="number">
+          <input [(ngModel)]="user.phone" name="phone" class="input" type="text" required [ngClass]="{'is-success':fields.phone.success,'is-danger':fields.phone.danger}">
           <span class="icon is-small is-left">
             <i class="fas fa-phone"></i>
           </span>
+          <span *ngIf="fields.phone.success" class="icon is-small is-right">
+            <i class="fas fa-check"></i>
+          </span>
+          <span *ngIf="fields.phone.danger" class="icon is-small is-right">
+            <i class="fas fa-exclamation-triangle"></i>
+          </span>
+          <p *ngIf="fields.phone.help" class="help is-danger">{{ fields.phone.help }}</p>
         </div>
       </div>
       <div class="field">
         <label class="label">E-mail</label>
         <div class="control has-icons-left has-icons-right">
-          <input class="input" type="email">
+          <input [(ngModel)]="user.email" name="email" class="input" type="email" required [ngClass]="{'is-success':fields.email.success,'is-danger':fields.email.danger}">
           <span class="icon is-small is-left">
             <i class="fas fa-envelope"></i>
           </span>
+          <span *ngIf="fields.email.success" class="icon is-small is-right">
+            <i class="fas fa-check"></i>
+          </span>
+          <span *ngIf="fields.email.danger" class="icon is-small is-right">
+            <i class="fas fa-exclamation-triangle"></i>
+          </span>
+          <p *ngIf="fields.email.help" class="help is-danger">{{ fields.email.help }}</p>
         </div>
       </div>
       <div class="field">
         <label class="label">Contraseña</label>
         <div class="control has-icons-left has-icons-right">
-          <input class="input" type="password">
+          <input [(ngModel)]="user.password" name="password" class="input" type="password" required [ngClass]="{'is-success':fields.password.success,'is-danger':fields.password.danger}">
           <span class="icon is-small is-left">
             <i class="fas fa-lock"></i>
           </span>
+          <span *ngIf="fields.password.success" class="icon is-small is-right">
+            <i class="fas fa-check"></i>
+          </span>
+          <span *ngIf="fields.password.danger" class="icon is-small is-right">
+            <i class="fas fa-exclamation-triangle"></i>
+          </span>
+          <p *ngIf="fields.password.help" class="help is-danger">{{ fields.password.help }}</p>
         </div>
       </div>
       <label class="checkbox">
-        <input type="checkbox">
-        He leído y acepto los <a href="#">Términos y Condiciones de Servicio</a> y la <a href="#">Política de privacidad</a>. *
+        <input [(ngModel)]="user.terms" name="terms" type="checkbox" required>
+        He leído y acepto los <a href="#">Términos y Condiciones de Servicio</a> y la <a href="#">Política de privacidad</a>.
+        <p *ngIf="fields.terms.help" class="help is-danger">{{ fields.terms.help }}</p>
       </label>
     </section>
     <footer class="modal-card-foot">
-      <button class="button is-success">Registrarse</button>
+      <button type="submit" class="button is-success">Registrarse</button>
     </footer>
   </div>
 </div>
- 
+</form> 
