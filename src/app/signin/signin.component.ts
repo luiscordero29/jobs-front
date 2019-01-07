@@ -10,12 +10,39 @@ import validator from 'validator';
   styleUrls: ['./signin.component.sass']
 })
 export class SigninComponent implements OnInit {
-  user = new User('', '', '', '', false);
+  user = new User('', '', '', '', false, '');
   userValidated: Boolean = false;
+  loading: Boolean = false;
   fields: any;
   constructor(
     public SigninS: SigninService
-  ) {
+  ) {}
+
+  ngOnInit() {
+    this.signinReset();
+  }
+
+  modalClose() {
+    this.signinReset();
+    this.SigninS.toggle();
+  }
+
+  onSubmit(formSignin: NgForm) {
+    this.signinValidator();
+    if (formSignin.valid && this.userValidated) {
+      this.loading = true;
+      console.log(this.user);
+    }
+  }
+
+  signinReset() {
+    this.loading = false;
+    this.user.fullname = '';
+    this.user.phone = '';
+    this.user.email = '';
+    this.user.password = '';
+    this.user.type = '';
+    this.user.terms = false;
     this.fields = {
       fullname: {
         success: false,
@@ -37,24 +64,15 @@ export class SigninComponent implements OnInit {
         danger: false,
         help: '',
       },
+      type: {
+        success: false,
+        danger: false,
+        help: '',
+      },
       terms: {
         help: '',
       },
     };
-  }
-
-  ngOnInit() {
-  }
-
-  modalClose() {
-    this.SigninS.toggle();
-  }
-
-  onSubmit(formSignin: NgForm) {
-    this.signinValidator();
-    if (formSignin.valid && this.userValidated) {
-      console.log(this.user);
-    }
   }
 
   signinValidator() {
@@ -123,6 +141,19 @@ export class SigninComponent implements OnInit {
       this.fields.password.help = '';
       this.userValidated = true;
     }
+    if ( validator.isEmpty(this.user.type) ) {
+      // danger
+      this.fields.type.success = false;
+      this.fields.type.danger = true;
+      this.fields.type.help = 'Seleccione el tipo de usuario.';
+      this.userValidated = false;
+    } else {
+      // success
+      this.fields.type.success = true;
+      this.fields.type.danger = false;
+      this.fields.type.help = '';
+      this.userValidated = true;
+    }
     if ( !this.user.terms ) {
       // danger
       this.fields.terms.help = 'Es necesario aceptar los terminos y condiciones.';
@@ -133,5 +164,4 @@ export class SigninComponent implements OnInit {
       this.userValidated = true;
     }
   }
-
 }

@@ -1,12 +1,13 @@
-<form #formSignin="ngForm" (ngSubmit)="onSubmit(formSignin)" >
+<form #formSignin="ngForm" (ngSubmit)="onSubmit(formSignin)">
 <div class="modal" [ngClass]="{'is-active':SigninS.isOpen}">
   <div class="modal-background"></div>
   <div class="modal-card">
     <header class="modal-card-head">
       <p class="modal-card-title">Registrarse</p>
-      <button class="delete" aria-label="close" (click)="modalClose()"></button>
+      <button type="button" class="delete" aria-label="close" (click)="modalClose()"></button>
     </header>
     <section class="modal-card-body">
+      <div class="content">
       <div class="field">
         <label class="label">Apellidos y Nombres</label>
         <div class="control has-icons-left has-icons-right">
@@ -71,15 +72,29 @@
           <p *ngIf="fields.password.help" class="help is-danger">{{ fields.password.help }}</p>
         </div>
       </div>
+      <div class="field">
+        <label class="label">Tipo de Usuario</label>
+        <div class="control">
+          <div class="select" [ngClass]="{'is-success':fields.type.success,'is-danger':fields.type.danger}">
+            <select [(ngModel)]="user.type" name="type" required>
+              <option value="">Seleccione...</option>
+              <option value="employer">Soy un Empleador ó Empresa</option>
+              <option value="employee">Soy un Empleado</option>
+            </select>
+          </div>
+          <p *ngIf="fields.type.help" class="help is-danger">{{ fields.type.help }}</p>
+        </div>
+      </div>
       <label class="checkbox">
         <input [(ngModel)]="user.terms" name="terms" type="checkbox" required>
         He leído y acepto los <a href="#">Términos y Condiciones de Servicio</a> y la <a href="#">Política de privacidad</a>.
         <p *ngIf="fields.terms.help" class="help is-danger">{{ fields.terms.help }}</p>
       </label>
+      </div>
     </section>
     <footer class="modal-card-foot">
-      <button type="submit" class="button is-success">Registrarse</button>
+      <button type="submit" class="button is-success" [ngClass]="{'is-loading':loading}">Registrarse</button>
     </footer>
   </div>
 </div>
-</form> 
+</form>

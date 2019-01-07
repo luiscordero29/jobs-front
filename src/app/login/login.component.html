@@ -1,32 +1,50 @@
+<form #formLogin="ngForm" (ngSubmit)="onSubmit(formLogin)">
 <div class="modal" [ngClass]="{'is-active':LoginS.isOpen}">
   <div class="modal-background"></div>
   <div class="modal-card">
     <header class="modal-card-head">
       <p class="modal-card-title">Ingresar</p>
-      <button class="delete" aria-label="close" (click)="modalClose()"></button>
+      <button type="button" class="delete" aria-label="close" (click)="modalClose()"></button>
     </header>
     <section class="modal-card-body">
+      <div class="content">
       <div class="field">
         <label class="label">E-mail</label>
         <div class="control has-icons-left has-icons-right">
-          <input class="input" type="email">
+          <input [(ngModel)]="login.email" name="email" class="input" type="email" required [ngClass]="{'is-success':fields.email.success,'is-danger':fields.email.danger}">
           <span class="icon is-small is-left">
             <i class="fas fa-envelope"></i>
           </span>
+          <span *ngIf="fields.email.success" class="icon is-small is-right">
+            <i class="fas fa-check"></i>
+          </span>
+          <span *ngIf="fields.email.danger" class="icon is-small is-right">
+            <i class="fas fa-exclamation-triangle"></i>
+          </span>
+          <p *ngIf="fields.email.help" class="help is-danger">{{ fields.email.help }}</p>
         </div>
       </div>
       <div class="field">
         <label class="label">Contraseña</label>
         <div class="control has-icons-left has-icons-right">
-          <input class="input" type="password">
+          <input [(ngModel)]="login.password" name="password" class="input" type="password" required [ngClass]="{'is-success':fields.password.success,'is-danger':fields.password.danger}">
           <span class="icon is-small is-left">
             <i class="fas fa-lock"></i>
           </span>
+          <span *ngIf="fields.password.success" class="icon is-small is-right">
+            <i class="fas fa-check"></i>
+          </span>
+          <span *ngIf="fields.password.danger" class="icon is-small is-right">
+            <i class="fas fa-exclamation-triangle"></i>
+          </span>
+          <p *ngIf="fields.password.help" class="help is-danger">{{ fields.password.help }}</p>
         </div>
+      </div>
       </div>
     </section>
     <footer class="modal-card-foot">
-      <button class="button is-success">Ingresar</button>
+      <button type="submit" class="button is-success" [ngClass]="{'is-loading':loading}">Ingresar</button>
     </footer>
   </div>
 </div>
+</form>
